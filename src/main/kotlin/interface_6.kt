@@ -79,12 +79,51 @@ class VideoAttachment(val video: Video) : Attachment {
     }
 }
 
+data class Photo(
+    val id: Int,
+    val ownerId: Int
+)
+
+data class PhotoAttachment(val photo: Photo) : Attachment {
+    override val type: String = "photo"
+    override fun toString(): String {
+        return "PhotoAttachment(type='$type', photo='$photo')"
+    }
+}
+
+data class Doc(
+    val id: Int,
+    val text: String,
+    val title: String
+)
+
+data class DocAttachment(val doc: Doc) : Attachment {
+    override val type: String = "doc"
+    override fun toString(): String {
+        return "DocAttachment(type='$type', doc='$doc')"
+    }
+}
+
+data class App(
+    val id: Int,
+    val name: String
+)
+
+data class AppAttachment(val app: App) : Attachment {
+    override val type: String = "app"
+    override fun toString(): String {
+        return "AppAttachment(type='$type', app='$app')"
+    }
+}
 
 fun main() {
 
     val array = arrayOf(
         AudioAttachment(Audio(1, 2)),
-        VideoAttachment(Video(1, "title"))
+        VideoAttachment(Video(1, "title")),
+        PhotoAttachment(Photo(2,2)),
+        DocAttachment(Doc(5, "text", "title")),
+        AppAttachment(App(2, "name"))
     )
 
 //    for (attachment in array) {
